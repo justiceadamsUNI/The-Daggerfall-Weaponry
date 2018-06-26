@@ -1,0 +1,20 @@
+{
+  "name": "DagerfallWeaponry",
+  "version": "1.0.0",
+  "description": "All the weapons in the Daggefall armory!",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Justice adams",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.1.6",
+    "morgan": "^1.9.0"
+  }
+}
