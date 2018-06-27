@@ -11,11 +11,9 @@ var WeaponSchema = new Schema({
     required: 'Please enter the name of the weapon!'
   },
   type: {
-    type: [{
-      type: String,
-      enum: ['dagger', 'mace', 'sword', 'war-axe', 'battleaxe', 'greatsword', 'war-hammer', 'bow', 'crossbow']
-    }],
-     required: 'Please enter the weapon type {dagger, mace, sword, war-axe, battleaxe, greatsword, war-hammer, bow, crossbow}'
+	type: String,
+    enum: ['dagger', 'mace', 'sword', 'war-axe', 'battleaxe', 'greatsword', 'war-hammer', 'bow', 'crossbow'],
+    required: 'Please enter the weapon type {dagger, mace, sword, war-axe, battleaxe, greatsword, war-hammer, bow, crossbow}'
   },
   damage: {
     type: Number,

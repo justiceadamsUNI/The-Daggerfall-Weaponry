@@ -12,6 +12,16 @@ exports.get_all_weapons = function(req, res) {
   });
 };
 
+// store a weapon
+exports.store_a_weapon = function(req, res) {
+  var new_weapon = new WeaponsDB(req.body);
+  new_weapon.save(function(err, weapon) {
+    if (err)
+      res.send(err);
+    res.json(weapon);
+  });
+};
+
 // see specific weapon in armory
 exports.get_weapon = function(req, res) {
   WeaponsDB.findById(req.params.name, function(err, weapon) {
@@ -29,7 +39,6 @@ exports.update_weapon = function(req, res) {
     res.json(WeaponsDB);
   });
 };
-
 
 // remove specific weapon from armory
 exports.delete_weapon= function(req, res) {

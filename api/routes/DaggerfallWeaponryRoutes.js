@@ -10,6 +10,7 @@ module.exports = function(app) {
   // (lambda style)
   app.route('/weapons')
     .get(weaponsController.get_all_weapons)
+	.post(weaponsController.store_a_weapon);
 
   app.route('/weapons/:weaponId')
     .get(weaponsController.get_weapon)
