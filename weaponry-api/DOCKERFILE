@@ -1,0 +1,25 @@
+FROM node:8
+
+# Set work directory
+WORKDIR /usr/src/app
+
+# Create app directory
+COPY api/ /usr/src/app/api
+COPY package.json package.json
+COPY server.js server.js
+
+# Set up environment for MongoDB
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 && \
+	echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list && \
+	apt-get update
+
+# Install MongoDB and set up data folder
+RUN apt-get install -y mongodb-org=4.0.0 mongodb-org-server=4.0.0 mongodb-org-shell=4.0.0 mongodb-org-mongos=4.0.0 mongodb-org-tools=4.0.0 && \
+	mkdir -p /data/db
+
+# Install dependencies
+RUN npm install
+
+# Expose port and start server on that port
+EXPOSE 3000
+CMD [ "npm", "start" ]
