@@ -1,0 +1,8 @@
+FROM python:3
+
+# Set work directory
+WORKDIR /usr/src/
+
+COPY src/ /usr/src/
+
+RUN pip install requests
