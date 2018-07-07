@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 COPY api/ /usr/src/app/api
 COPY package.json package.json
 COPY server.js server.js
+COPY start-server.sh start-server.sh
 
 # Set up environment for MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 && \
@@ -22,4 +23,4 @@ RUN npm install
 
 # Expose port and start server on that port
 EXPOSE 3000
-CMD [ "npm", "start" ]
+ENTRYPOINT  [ "/usr/src/app/start-server.sh" ]
