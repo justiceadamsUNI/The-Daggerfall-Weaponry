@@ -3,6 +3,10 @@ FROM python:3
 # Set work directory
 WORKDIR /usr/src/
 
+# Copy source files
 COPY src/ /usr/src/
 
 RUN pip install requests
+
+# Start client on container startup
+CMD [ "python", "/usr/src/runner.py" ]
