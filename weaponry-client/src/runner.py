@@ -6,6 +6,15 @@ import command
 # ToDo: do work for each command
 
 class Runner:
+    COMMAND_INFO = "Emperor Septim has granted you access to the following commands: \n"\
+                   + "  -Retrieve (r) \n" \
+                   + "  -Store (s) \n" \
+                   + "  -Inspect (i) \n" \
+                   + "  -Modify (m) \n" \
+                   + "  -List (l) \n" \
+                   + "  -Quit (q) \n" \
+                   + "If you wish to learn more about any of the commands available, please type <COMMAND> -help\n"
+
     def print_welcome(self):
         """
         Prints the welcome information to stdout for the user to see upon startup
@@ -19,17 +28,10 @@ class Runner:
             (/'       `\|___________----------------------,
              \#########||______                          /'
               ^^^^^^^^^||      ----------_____          /'
-                        \                      ------_/' """)
+                        \                      ------_/' \n""")
 
         print("Welcome to the Daggerfall Weaponry, traveler! Here you may store and retrieve any weapons within the "
-              "Daggerfall armory. Emperor Septim has granted you access to the following commands: \n"
-              "  -Retrieve (r) \n"
-              "  -Store (s) \n"
-              "  -Inspect (i) \n"
-              "  -Modify (m) \n"
-              "  -List (l) \n"
-              "  -Quit (q) \n"
-              "If you wish to learn more about any of the commands available, please type <COMMAND> -help\n")
+              "Daggerfall armory. " + self.COMMAND_INFO)
 
     def get_command(self):
         """
@@ -39,19 +41,12 @@ class Runner:
         :return A tuple containing the command object, and a boolean value
         """
 
-        commands = ["r", "retrieve", "s", "store", "inspect", "i", "modify", "m", "quit", "q"]
+        commands = ["r", "retrieve", "s", "store", "inspect", "i", "modify", "m", "list", "l", "quit", "q"]
         response = input("Enter your command: ").lower()
 
         # If response is invalid, keep trying until a valid command is entered
         while response.split("-help")[0].strip() not in commands:
-            print("\nCommand not recognized. Emperor Septim has granted you access to the following commands: \n" 
-                  "  -Retrieve (r) \n"
-                  "  -Store (s) \n"
-                  "  -Inspect (i) \n"
-                  "  -Modify (m) \n"
-                  "  -List (l) \n"
-                  "  -Quit (q) \n"
-                  "If you wish to learn more about any of the commands available, please type <COMMAND> -help \n")
+            print("\nCommand not recognized. " + self.COMMAND_INFO)
 
             response = input("Enter your command: ").lower()
 
@@ -73,6 +68,7 @@ class Runner:
         while True:
             user_command, help_needed = self.get_command()
             user_command.help_prompt() if help_needed else user_command.execute()
+            print(self.COMMAND_INFO)
 
 
 # Start the client app

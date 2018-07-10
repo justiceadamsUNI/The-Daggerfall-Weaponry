@@ -24,7 +24,7 @@ exports.store_a_weapon = function(req, res) {
 
 // see specific weapon in armory
 exports.get_weapon = function(req, res) {
-  WeaponsDB.findById(req.params.name, function(err, weapon) {
+  WeaponsDB.findById(req.params.weaponId, function(err, weapon) {
     if (err)
       res.send(err);
     res.json(weapon);
@@ -33,7 +33,7 @@ exports.get_weapon = function(req, res) {
 
 // update specific weapon in armory
 exports.update_weapon = function(req, res) {
-  WeaponsDB.findOneAndUpdate({_id: req.params.name}, req.body, {new: true}, function(err, weapon) {
+  WeaponsDB.findOneAndUpdate({_id: req.params.weaponId}, req.body, {new: true}, function(err, weapon) {
     if (err)
       res.send(err);
     res.json(WeaponsDB);
@@ -43,7 +43,7 @@ exports.update_weapon = function(req, res) {
 // remove specific weapon from armory
 exports.delete_weapon= function(req, res) {
   WeaponsDB.remove({
-    _id: req.params.name
+    _id: req.params.weaponId
   }, function(err, weapon) {
     if (err)
       res.send(err);
