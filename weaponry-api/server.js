@@ -17,6 +17,11 @@ app.use(bodyParser.json());
 var routes = require('./api/routes/DaggerfallWeaponryRoutes');
 routes(app);
 
+// add 404 redirect for incorrect routes
+app.use(function(req, res) {
+  res.status(404).send({url: req.originalUrl + ' not found'})
+});
+
 app.listen(port);
 console.log('Server started on PORT: ' + port);
 console.log('*** Developed by Justice Adams *** ');
