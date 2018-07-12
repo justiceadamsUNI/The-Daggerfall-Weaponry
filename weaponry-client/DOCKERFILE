@@ -9,4 +9,4 @@ COPY src/ /usr/src/
 RUN pip install requests
 
 # Start client on container startup
-CMD [ "python", "/usr/src/runner.py" ]
+ENTRYPOINT [ "python", "/usr/src/runner.py" ]

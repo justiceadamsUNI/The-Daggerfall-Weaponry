@@ -4,6 +4,9 @@ import pprint
 import time
 
 class Command:
+    def __init__(self, ip_address):
+        self.ip_address = ip_address
+
     def report_and_wait(self, message):
         # Report status, wait while user reads it, and continue
         print(message)
@@ -31,7 +34,7 @@ class Retrieve(Command):
         """
         weapon_id = input("What is the ID of the weapon you wish to remove from the weaponry: ")
 
-        response = requests.delete("http://192.168.99.100:3000/Weapons/" + weapon_id)
+        response = requests.delete("http://" + self.ip_address + ":3000/Weapons/" + weapon_id)
 
         if self.check_response_for_error(response,
                                          "ERROR while removing weapon, did you enter the correct weapon ID? Taking"
@@ -59,7 +62,7 @@ class Store(Command):
             'type': input("Enter the type of the weapon you want to store: ")
         }
 
-        response = requests.post("http://192.168.99.100:3000/Weapons", data=weapon)
+        response = requests.post("http://" + self.ip_address + ":3000/Weapons", data=weapon)
 
         if self.check_response_for_error(response,
                                          "ERROR while storing weapon, did you enter all values correctly? Taking"
@@ -84,7 +87,7 @@ class Inspect(Command):
         Prints the stats of whichever weapon is specified via the weapon ID
         """
         weapon_id = input("What is the ID of the weapon you wish to inspect: ")
-        response = requests.get("http://192.168.99.100:3000/Weapons/" + weapon_id)
+        response = requests.get("http://" + self.ip_address + ":3000/Weapons/" + weapon_id)
 
         if self.check_response_for_error(response,
                                          "ERROR while inspecting weapon, did you enter the correct weapon ID? Taking"
@@ -107,7 +110,7 @@ class Modify(Command):
         """
         weapon_id = input("Enter the id of the weapon you want to modify: ")
 
-        response = requests.get("http://192.168.99.100:3000/Weapons/" + weapon_id)
+        response = requests.get("http://" + self.ip_address + ":3000/Weapons/" + weapon_id)
 
         if self.check_response_for_error(response,
                                          "ERROR while modifying weapon, did you enter the correct weapon ID? Taking"
@@ -125,7 +128,7 @@ class Modify(Command):
             'type': input("Enter the updated type of the weapon: ")
         }
 
-        response = requests.put("http://192.168.99.100:3000/Weapons/" + weapon_id, data=weapon)
+        response = requests.put("http://" + self.ip_address + ":3000/Weapons/" + weapon_id, data=weapon)
 
         if response.status_code != 200:
             print("ERROR while modifying weapon, did you enter the correct weapon ID? Taking"
@@ -150,7 +153,7 @@ class List(Command):
         """
         Print all weapons received from API to standard out.
         """
-        response = requests.get("http://192.168.99.100:3000/Weapons")
+        response = requests.get("http://" + self.ip_address + ":3000/Weapons")
 
         if self.check_response_for_error(response,
                                          "ERROR retrieving weapons, did you enter the correct IP address? Taking"
