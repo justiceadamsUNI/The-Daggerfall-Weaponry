@@ -1,0 +1,46 @@
+{
+  "weapons": [
+    {
+      "name": "Chillrend",
+      "damage": 21,
+      "value": 4584,
+      "weight": 22,
+      "type":"sword"
+    },
+    {
+      "name": "Daedric Bow",
+      "damage": 19,
+      "value": 2500,
+      "weight": 18,
+      "type":"bow"
+    },
+	{
+      "name": "Stalhrim Battleaxe",
+      "damage": 24,
+      "value": 2150,
+      "weight": 25,
+      "type":"battleaxe"
+    },
+	{
+      "name": "Orcish Greatsword",
+      "damage": 18,
+      "value": 75,
+      "weight": 18,
+      "type":"greatsword"
+    },
+	{
+      "name": "Dwarven Warhammer",
+      "damage": 22,
+      "value": 325,
+      "weight": 27,
+      "type":"warhammer"
+    },
+	{
+      "name": "Chittin Club",
+      "damage": 3,
+      "value": 6,
+      "weight": 6,
+      "type":"warhammer"
+    }
+  ]
+}

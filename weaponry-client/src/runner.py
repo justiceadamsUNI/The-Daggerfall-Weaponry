@@ -2,6 +2,8 @@ import requests
 import command
 import sys
 import os
+import json
+import populator
 
 # ToDo: Plug in ip address from docker build
 # ToDo: Check IP address to ensure validity. Possibly with request library?
@@ -72,6 +74,7 @@ class Runner:
         Method to run the client application code
         """
         self.check_ip(ip_address)
+        populator.InventoryPopulator(ip_address).populate_initial_inventory()
         self.print_welcome()
         while True:
             user_command, help_needed = self.get_command(ip_address)
